@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./output.css" rel="stylesheet">
+  <style>
+    #btn, #games{
+  position: relative;
+  top: 0;
+  opacity: 1;
+  transition: transform 1s ease, opacity 1s ease; /* Set the transition property for transform and opacity */
+    }
+    .fade-out-and-up {
+  transform: translateY(-100px); /* Move the element upwards by 50 pixels */
+  z-index: -20;
+  opacity: 0; /* Set opacity to 0 */
+    }
+  </style>
+</head>
+<body bgcolor="blue">
+        <div class="mt-[10rem]">
+     <div class="mx-[22.5rem] my-10 border-4 text-white rounded-xl p-5 flex justify-between px-16 bg-blue-950 z-10">
+        <div class="z-10">
+            <ul class="text-4xl  font-bold">
+                <li class="text-gray-400 ">ROCK</li>
+                <li class="text-white-500">PAPER</li>
+                <li class="text-yellow-300">SCISSORS</li>
+            </ul>
+        </div>
+        <div class="z-10">
+            <div class="border-2 bg-white w-[8rem] h-[8rem] flex flex-col rounded-lg">
+                <div class="text-2xl text-green-600 font-bold items-start flex justify-center" id="ci">SCORE</div>
+                <div class="text-gray-900 flex justify-center items-center text-[3rem] font-bold" id="score">0</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="flex justify-center">
+            <input type="button" value="Let's Roll" class=" block border-4 border-white bg-white px-14 py-2 rounded-lg text-[1.5rem] font-bold hover:border-black active:bg-black active:text-white" id="btn" onclick="btnClick()">
+        </div>
+    </div>
+    <div class="mt-24 -translate-y-[21rem] z-0 hidden" id="games">
+        <div class="flex justify-center -z-100">
+            <div class="">
+                <ul class="flex justify-center space-x-36">
+                    <li class="border-4 text-[2rem] rounded-full px-[24px] py-[40px] bg-gray-700 font-bold hover:border-black" id="rock" onclick="rockCicked()"> ROCK</li>
+                    <li class="hover:border-black border-4 text-[2rem] rounded-full px-[24px] py-[40px] bg-white font-bold" id="paper" onclick="paperClicked()">PAPER</li>
+                    <li class="hover:border-black border-4 text-[2rem] rounded-full px-[24px] py-[40px] bg-yellow-300 font-bold" id="scissors" onclick="scissorsClicked()">SCISSORS</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+   </div>
+</body>
+<script>
+    const rock = document.getElementById("rock")
+    const paper = document.getElementById("paper")
+    const scissors = document.getElementById("scissors")
+    var value = document.getElementById("score")
+    var ci = document.getElementById("ci")
+    const btn = document.getElementById("btn")
+    const games = document.getElementById("games")
+    // btn disapper
+    function btnClick(){
+        // for Let's roll button 
+    function fadeOutAndUp(btn){
+        btn.classList.add('fade-out-and-up');
+    }
+    setTimeout(function(){
+        btn.style.display = 'none';
+    },2000)
+
+    setTimeout(function(){
+        fadeOutAndUp(btn);
+    },1500)
+
+    function Down(games){
+        games.classList.add('-translate-y-[0px]')
+    }
+    setTimeout(function(){
+        Down(games);
+    },1500)
+    function fadeIn(games){
+        games.classList.remove('hidden')
+    }
+    setTimeout(function(){
+        fadeIn(games)
+    },1480)
+
+}
+    // Main Logic 
+    var systemInput;
+    var score = 0;
+    function rockCicked(){
+        systemInput =  getRandomNumber(3)
+        if(systemInput == 1)
+        {
+            alert("Draw");
+        }else if (systemInput == 2)
+        {
+            alert("computer won ");
+            score--;
+            value.innerHTML = score;
+        }
+        else{
+            alert("you won");   
+            score++;
+            value.innerHTML = score;
+        }
+    }
+    function paperClicked(){
+        systemInput =  getRandomNumber(3)
+        if(systemInput == 1)
+        {
+            alert("you won");
+            score++;
+            value.innerHTML = score;
+        }else if (systemInput == 2)
+        {
+            alert("draw");
+            // score--;
+            // value.innerHTML = score;
+        }
+        else{
+            alert("computer Won");
+            score--;
+            value.innerHTML = score;
+        }
+    }
+    function scissorsClicked(){
+        systemInput =  getRandomNumber(3)
+        if(systemInput == 1)
+        {
+            alert("computer won");
+            score--;
+            value.innerHTML = score;
+        }else if (systemInput == 2)
+        {
+            alert("you won");
+            score++;
+            value.innerHTML = score;
+        }
+        else{
+            alert("draw");
+            // score++;
+            // value.innerHTML = score;
+        }
+    }
+
+    // function to get random number 
+    function getRandomNumber(max){
+        return Math.floor(Math.random()*max);
+    console.log(max);   
+    }
+
+
+</script>
+</html> 
